@@ -24,9 +24,13 @@
           @click="switchVisualMode(visualMode === 'light' ? 'dark' : 'light')"
         />
       </h1>
-      <p text-slate-500>author by: kangz</p>
+      <p text-slate-500>author by: CanShine</p>
       <div border-t-1 border-b-0 border-slate-400 m-y-3 />
-      <router-view />
+      <router-view v-slot="{ Component }">
+        <transition name="fade">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </div>
   </div>
 </template>
@@ -35,3 +39,15 @@
 import useVisualMode from '../composable/visual-mode'
 const { switchVisualMode, visualMode } = useVisualMode()
 </script>
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

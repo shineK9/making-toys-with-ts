@@ -1,3 +1,34 @@
 <template>
-  <div class="game-of-life">Game of life</div>
+  <div class="game-of-life">
+    <p>Canway's Game of life</p>
+    <div
+      ref="canvasRef"
+      border-dashed
+      border-1
+      rounded
+      w-full
+      h-full
+      border-slate-400
+    />
+  </div>
 </template>
+
+<script setup lang="ts">
+import { onMounted, onUnmounted, ref } from 'vue'
+import { run } from './game'
+
+const canvasRef = ref<HTMLCanvasElement>()
+
+let destroy: () => void
+
+onMounted(() => {
+  destroy = run({
+    el: canvasRef.value!,
+    size: 150,
+  })
+})
+
+onUnmounted(() => {
+  destroy()
+})
+</script>

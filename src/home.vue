@@ -19,6 +19,7 @@
         no-underline
         cursor-pointer
         text-blue-500
+        transition-all
       >
         {{ idx + 1 }}.
         <span inline-block truncate max-w-45 vertical-middle>{{
@@ -27,7 +28,7 @@
         ({{ i.meta?.status }})
       </router-link>
       <div m-y-1 />
-      <div v-html="i.meta?.describe"></div>
+      <div dark:text-blue-100 v-html="i.meta?.describe"></div>
     </li>
   </ul>
 </template>
