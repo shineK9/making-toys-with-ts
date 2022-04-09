@@ -6,8 +6,8 @@
       border-dashed
       border-1
       rounded
-      w-full
-      h-full
+      m-auto
+      class="w-2/3"
       border-slate-400
     />
   </div>
@@ -24,7 +24,7 @@ let destroy: () => void
 onMounted(() => {
   destroy = run({
     el: canvasRef.value!,
-    size: 150,
+    size: 100,
   })
 })
 

@@ -1,5 +1,5 @@
+import { Application, Graphics } from 'pixi.js'
 import { delay } from '../../utils'
-import { Application, filters, Graphics } from 'pixi.js'
 
 enum Cell {
   Alive = 1,
@@ -16,17 +16,6 @@ type World = Cell[][]
 export interface GameOption {
   el: HTMLCanvasElement
   size: number
-}
-
-function worldEach(
-  fn: (cell: Cell, x: number, y: number) => void,
-  world: World,
-) {
-  for (let y = 0; y < world.length; y++) {
-    for (let x = 0; x < world[y].length; x++) {
-      fn(world[y][x], x, y)
-    }
-  }
 }
 
 function worldMap(
@@ -161,10 +150,20 @@ export function run(option: GameOption) {
 
   let world = genWorld(size)
 
-  app.ticker.maxFPS = 1
-  app.ticker.add(() => {
-    world = _run(graphics, el.offsetWidth, size, world)
-  })
+  // app.ticker.maxFPS = 1
+  // app.ticker.add(() => {
+  //   world = _run(graphics, el.offsetWidth, size, world)
+  // })
+
+  const loop = () => {
+    requestAnimationFrame(async () => {
+      world = _run(graphics, el.offsetWidth, size, world)
+      await delay(500)
+      loop()
+    })
+  }
+
+  loop()
 
   const stop = app.destroy.bind(app)
 

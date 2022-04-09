@@ -7,10 +7,10 @@
     h-full
     transition-all
   >
-    <div class="w-1/2" m-auto pt-30 text-center>
+    <div class="w-1/2" m-auto pt-15 text-center>
       <h1>
         <router-link to="/" no-underline text-blue-500 dark:text-blue-300>
-          Toys with Typescript
+          Shinecan's 博客
         </router-link>
         <button
           m-l-3
